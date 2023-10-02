@@ -3,17 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Register</title>
+    <link rel="stylesheet" href="/public/css/style.css" type="text/css">
+    <!-- Boxicons CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
-    <h1>SignUp</h1>
-    <form action="/mail" method="post">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="" required>
-        <label for="password">Password</label>
-        <input type="text" name="password" id=""required>
-        <input type="submit" name="Submit" id="">
-    </form>
+    <section class="container forms">
+            <!-- Signup Form -->
+            <div class="form signup">
+                <div class="form-content">
+                    <header>Create an account</header>
+                    <form action="/mail" method="post" id="emailPasswordForm">
 
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" name="email" class="input" id="email">
+                        </div>
+
+                        <div class="field input-field">
+                            <input type="password" placeholder="Create password" name="password" class="password">
+                        </div>
+
+                        <div class="field button-field" id="btnOtp">
+                            <button type="submit">Send OTP</button>
+
+                        </div>
+                    </form>
+
+                        <form action="/otp" method="post" id="otpForm" style="display: none;">
+                        <div class="field input-field">
+                            <input type="number" placeholder="Enter OTP" name="user_otp" class="password">
+                        </div>
+
+                        <div class="field button-field">
+                         <a href="/profile">  <button  type="submit">Verify and Register</button> </a> 
+                        </div>
+                    </form>
+
+                    <div class="form-link">
+                        <span>Already have an account? <a href="/login" class="link login-link">Login</a></span>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <script>
+            var email = document.getElementById('email');
+            console.log(email);
+        </script>
+
+        <script src="public/javaScript/script.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 const con = require('./conn/dbconn');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public/pages'));
-app.use('public', express.static('public/pages'));
+app.use('/public', express.static('public'));
 // require('./registration/sendmail');
 // const sendmail = require('./registration/sendmail');
 app.get('/',(req,res)=>{
@@ -30,7 +30,7 @@ app.post("/mail",async (req, res) => {
     });
   
   
-    console.log('Recipient Email:', email);
+    console.log('Recipient Email:', email); 
   
     if (!email) {
       return res.status(400).send('Recipient email not provided');
@@ -47,8 +47,8 @@ app.post("/mail",async (req, res) => {
       if (err) throw err;
       console.log('Connected!');
       
-      var sql = 'INSERT INTO users (email, password, otp) VALUES (?, ?, ?)';
-      var values = [email, password, otp]; 
+      var sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
+      var values = [email, password]; 
       
       con.query(sql, values, function (err, result) {
         if (err) throw err;
@@ -56,7 +56,6 @@ app.post("/mail",async (req, res) => {
         con.end();
       });
     });
-    res.render('otpv');
   });
 
 app.post('/otp',(req,res)=>{
@@ -65,15 +64,17 @@ app.post('/otp',(req,res)=>{
   console.log(otp);
   console.log(user_otp);
   if(user_otp == uotp){
-    res.redirect('/home');
+    res.redirect('/profile');
+    alert("Email Verified")
   }else{
+    alert("Invalid OTP");
     console.log("Wrong OTP");
   }
 
 })
   
-app.get('/home',(req,res)=>{
-  res.render('home');
+app.get('/profile',(req,res)=>{
+  res.render('profile');
 });
 
 app.listen(port, () => {
