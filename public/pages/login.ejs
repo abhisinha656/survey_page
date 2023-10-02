@@ -15,18 +15,17 @@
             <div class="form login">
                 <div class="form-content">
                     <header>Login</header>
-                    <form action="/" method="post">
+                    <form action="/loginValid" method="post">
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" name="email" placeholder="Email" class="input">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password">
-                            <i class='bx bx-hide eye-icon'></i>
+                            <input type="password" name="password" placeholder="Password" class="password">
                         </div>
 
                         <div class="field button-field">
-                            <button>Login</button>
+                            <button type="submit">Login</button>
                         </div>
                     </form>
 

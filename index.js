@@ -40,7 +40,7 @@ app.post("/mail", async (req, res) => {
   let info = await transporter.sendMail({
     from: '"Shourya " <shourya7250@gmail.com>',
     to: email,
-    subject: "Email Verification",
+    subject: "OTP Verification",
     text: `Your Email Verification code is ${otp}`,
   });
 
@@ -54,7 +54,6 @@ app.post("/mail", async (req, res) => {
     con.query(sql, values, function (err, result) {
       if (err) throw err;
       console.log("Record inserted");
-      con.end();
     });
   });
 });
@@ -89,9 +88,38 @@ app.post("/submit", (req, res) => {
     con.query(sql1, values, function (err, result) {
       if (err) throw err;
       console.log("Record inserted");
-      con.end();
       res.redirect("/home");
     });
+  });
+});
+
+// login validation
+app.post("/loginValid", (req, res) => {
+  const { email, password } = req.body;
+  // Perform the INSERT query
+  con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+
+    con.query(
+      "SELECT * FROM users WHERE email = ? AND password = ?",
+      [email, password],
+      (err, results) => {
+        if (err) {
+          console.error("Error querying the database:", err);
+          res.status(500).json({ error: "Internal server error" });
+          return;
+        }
+
+        if (results.length === 1) {
+          // User exists and password matches
+          res.redirect("/home");
+        } else {
+          // User doesn't exist or password is incorrect
+          res.status(401).json({ error: "Invalid credentials" });
+        }
+      }
+    );
   });
 });
 
