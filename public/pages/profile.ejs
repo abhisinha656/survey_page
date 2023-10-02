@@ -4,41 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Profile</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/public/css/style.css">
-=======
-    <link rel="stylesheet" href="/css/style.css">
->>>>>>> b9c06c74ea95ed79f8878057e27a566eb1e8ff79
+
+    <link rel="stylesheet" href="/public/css/style.css" type="text/css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 <body>
     <section class="container forms">
-    <div class="form">
+    <div class="form login">
                 <div class="form-content">
                     <header>Complete Your Profile</header>
-                    <form action="" method="post">
+                    <form action="/submit" method="post">
                         <div class="field input-field">
-                            <input type="text" placeholder="Full Name" class="input">
+                            <input type="text" name="fullname" placeholder="Full Name" class="input">
                         </div>
                         <div class="field input-field">
-                            <input type="number" placeholder="Phone number with country code" class="input">
+                            <input type="number" name="phone" placeholder="Phone number with country code" class="input">
                         </div>
                         
                         <div class="field input-field">
-                            <input type="text" placeholder="Address line 1" class="input">
+                            <input type="text" name="address" placeholder="Address line 1" class="input">
                         </div>
                         <div class="field input-field">
-                            <input type="text" placeholder="State" class="input">
+                            <input type="text" name="state" placeholder="State" class="input">
                         </div>
                         <div class="field input-field">
-                            <input type="text" placeholder="Country" class="input">
+                            <input type="text" name="country" placeholder="Country" class="input">
                         </div>
                         <div class="field input-field">
-                            <input type="number" placeholder="Zip Code" class="input">
+                            <input type="number" name="zipcode" placeholder="Zip Code" class="input">
                         </div>
                         <div class="field button-field">
-                            <button>Submit</button>
+                          <a href="/home">  <button type="submit" >Submit</button> </a>
                         </div>
                     </form>
                 </div>

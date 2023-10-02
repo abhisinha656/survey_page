@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/homepage.css" type="text/css">
     <title>Survey Website</title>
-  </head>
-  <body>
-    <h2>homepage</h2>
-  </body>
+</head>
+<body>
+    <h1>Survey Question</h1>
+    <form action="/survey" method="post">
+        <div class="question">
+            <label for="q1">Question 1: How satisfied are you with our service?</label>
+            <input type="radio" name="q1" value="1"> Very Satisfied <br>
+            <input type="radio" name="q1" value="2"> Satisfied <br>
+            <input type="radio" name="q1" value="3"> Neutral <br>
+            <input type="radio" name="q1" value="4"> Dissatisfied <br>
+            <input type="radio" name="q1" value="5"> Very Dissatisfied <br>
+        </div>
+        
+        <div class="question">
+            <label for="q2">Question 2: Would you recommend us to a friend?</label>
+            <input type="radio" name="q2" value="Yes"> Yes <br>
+            <input type="radio" name="q2" value="No"> No <br>
+        </div>
+         <div class="question">
+            <label for="q3">3. How often do you use our service?</label>
+            <input type="radio" name="q3" value="Daily"> Daily <br>
+            <input type="radio" name="q3" value="Weekly"> Weekly <br>
+            <input type="radio" name="q3" value="Monthly"> Monthly <br>
+            <input type="radio" name="q3" value="Rarely"> Rarely<br>
+            <input type="radio" name="q3" value="Never"> Never<br>
+        </div>
+        <div class="question">
+            <label for="q1">4. How satisfied are you with our product?</label>
+            <input type="radio" name="q4" value="Very Satisfied"> Very Satisfied<br>
+            <input type="radio" name="q4" value="Satisfied"> Satisfied<br>
+            <input type="radio" name="q4" value="Neutral"> Neutral<br>
+            <input type="radio" name="q4" value="Dissatisfied"> Dissatisfied<br>
+            <input type="radio" name="q4" value="Very Dissatisfied"> Very Dissatisfied<br>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
 </html>
