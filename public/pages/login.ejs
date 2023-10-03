@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="/public/css/style.css" type="text/css">
-=======
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
->>>>>>> b9c06c74ea95ed79f8878057e27a566eb1e8ff79
     <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
@@ -18,18 +15,17 @@
             <div class="form login">
                 <div class="form-content">
                     <header>Login</header>
-                    <form action="/" method="post">
+                    <form action="/loginValid" method="post">
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" name="email" placeholder="Email" class="input">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password">
-                            <i class='bx bx-hide eye-icon'></i>
+                            <input type="password" name="password" placeholder="Password" class="password">
                         </div>
 
                         <div class="field button-field">
-                            <button>Login</button>
+                            <button type="submit">Login</button>
                         </div>
                     </form>
 
