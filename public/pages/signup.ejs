@@ -1,59 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="/public/css/style.css" type="text/css">
-    <!-- Boxicons CSS -->
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link rel="stylesheet" href="/public/css/style.css" type="text/css" />
+  <!-- Boxicons CSS -->
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 </head>
+
 <body>
-    <section class="container forms">
-            <!-- Signup Form -->
-            <div class="form signup">
-                <div class="form-content">
-                    <header>Create an account</header>
-                    <form action="/mail" method="post" id="emailPasswordForm">
+  <section class="container forms">
+    <!-- Signup Form -->
+    <div class="form signup">
+      <div class="form-content">
+        <form action="/mail" method="post" id="emailPasswordForm">
+          <header>
+            <h1>Create an account</h1>
+          </header>
 
-                        <div class="field input-field">
-                            <input type="email" placeholder="Email" name="email" class="input" id="email">
-                        </div>
+          <div class="field input-field">
+            <input type="email" placeholder="Email" name="email" class="input" id="email" required />
+          </div>
 
-                        <div class="field input-field">
-                            <input type="password" placeholder="Create password" name="password" class="password">
-                        </div>
+          <div class="field input-field">
+            <input type="password" placeholder="Create password" name="password" class="password" required />
+          </div>
 
-                        <div class="field button-field" id="btnOtp">
-                            <button type="submit">Send OTP</button>
+          <div class="field input-field">
+            <input type="text" placeholder="Full Name" name="fullname" class="input" required id="fname" />
+          </div>
 
-                        </div>
-                    </form>
+          <div class="field input-field">
+            <input type="number" placeholder="age" name="age" class="input" required id="age" />
+          </div>
 
-                        <form action="/otp" method="post" id="otpForm" style="display: none;">
-                        <div class="field input-field">
-                            <input type="number" placeholder="Enter OTP" name="user_otp" class="password">
-                        </div>
+          <div class="field input-field">
+            <input type="text" placeholder="City" name="city" class="input" required id="city" />
+          </div>
 
-                        <div class="field button-field">
-                         <a href="/profile">  <button  type="submit">Verify and Register</button> </a> 
-                        </div>
-                    </form>
+          <div class="field input-field">
+            <input type="text" placeholder="Country" name="country" class="input" required id="country" />
+          </div>
 
-                    <div class="form-link">
-                        <span>Already have an account? <a href="/login" class="link login-link">Login</a></span>
-                    </div>
-                </div>
+          <div class="field input-field">
+            <label for="gender">Gender : </label>
+            <input type="radio" name="gender" value="male" class="" required id="gen" />
+            Male &nbsp;
+            <input type="radio" name="gender" value="female" class="" id="gen" />
+            Female &nbsp;
+            <input type="radio" name="gender" value="others" class="" id="gen" />
+            Others &nbsp;
+          </div>
 
+          <div class="field input-field">
+            <label for="dob">DOB : </label>
+            <input type="date" placeholder="DOB" name="dob" class="input" required id="dob" />
+          </div>
 
-            </div>
-        </section>
-        <script>
-            var email = document.getElementById('email');
-            console.log(email);
-        </script>
+          <div class="field input-field">
+            <label for="student_status">Student Status :</label>
+            <select id="student_status" name="student_status" required >
+              <option value="non-athlete">Student Non-Athlete</option>
+              <option value="amateur-athlete">Student Amateur Athlete</option>
+              <option value="elite-athlete">Student Elite Athlete</option>
+              <option value="professional-athlete">
+                Professional Athlete (Non-Student)
+              </option>
+              <option value="non-athlete">Not Applicable</option>
+            </select>
+          </div>
 
-        <script src="public/javaScript/script.js"></script>
+          <div class="field input-field">
+            <label for="disability_status">Disability Status :</label>
+            <select id="disability_status" name="disability_status" required>
+              <option value="visual-impairment">Not Applicable</option>
+              <option value="visual-impairment">Visual Impairment</option>
+              <option value="hearing-impairment">Hearing Impairment</option>
+              <option value="mobility-impairment">Mobility Impairment</option>
+              <option value="cognitive-intellectual-disability">
+                Cognitive/Intellectual Disability
+              </option>
+              <option value="speech-language-impairment">
+                Speech and Language Impairment
+              </option>
+              <option value="neurological-condition">
+                Neurological Condition
+              </option>
+              <option value="psychiatric-mental-health-condition">
+                Psychiatric/Mental Health Condition
+              </option>
+              <option value="developmental-disability">
+                Developmental Disability
+              </option>
+              <option value="chronic-health-condition">
+                Chronic Health Condition
+              </option>
+              <option value="other">Other</option>
+            </select>
+            <!-- <input type="date" name="dob" placeholder="DOB" class="input"> -->
+          </div>
+
+          <div class="field button-field" id="btnOtp">
+            <button type="submit">Next</button>
+          </div>
+        </form>
+
+        <form action="/otp" method="post" id="otpForm" style="display: none">
+          <header>
+            <h1>Enter OTP</h1>
+          </header>
+          <div class="field input-field">
+            <input type="number" placeholder="Enter OTP" name="user_otp" class="password" />
+          </div>
+
+          <div class="field button-field">
+            <a href="/home">
+              <button type="submit">Verify and Register</button>
+            </a>
+          </div>
+        </form>
+
+        <div class="form-link">
+          <span>Already have an account?
+            <a href="/login" class="link login-link">Login</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    var email = document.getElementById("email");
+    console.log(email);
+  </script>
+
+  <script src="public/javaScript/script.js"></script>
 </body>
+
 </html>

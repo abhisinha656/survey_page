@@ -8,6 +8,8 @@ const otp = Math.floor(1000 + Math.random() * 9000);
 app.use(bodyparser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyparser.urlencoded({ extended: true }));
+
 const con = require("./conn/dbconn");
 
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -21,7 +23,21 @@ app.get("/", (req, res) => {
 
 // Step 1: Handle email and password submission
 app.post("/mail", async (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password,
+    fullname,
+    age,
+    city,
+    country,
+    gender,
+    dob,
+    student_status,
+    disability_status,
+  } = req.body;
+
+  // console.log(fullname);
+
   const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
@@ -47,13 +63,28 @@ app.post("/mail", async (req, res) => {
   con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
+    const sql =
+      "INSERT INTO user_data (email, password, fullname, age, city, country, gender, dob, student_status, disability_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const values = [
+      email,
+      password,
+      fullname,
+      age,
+      city,
+      country,
+      gender,
+      dob,
+      student_status,
+      disability_status,
+    ];
 
-    var sql = "INSERT INTO users (email, password) VALUES (?, ?)";
-    var values = [email, password];
-
+    console.log(values);
     con.query(sql, values, function (err, result) {
-      if (err) throw err;
-      console.log("Record inserted");
+      if (err) {
+        console.error("Error inserting record:", err.message);
+      } else {
+        console.log("Record inserted");
+      }
     });
   });
 });
@@ -64,33 +95,13 @@ app.post("/otp", (req, res) => {
   console.log(otp);
   console.log(user_otp);
   if (user_otp == uotp) {
-    res.redirect("/profile");
+    res.redirect("/home");
     // alert("Email Verified")
   } else {
     // alert("Invalid OTP");
     console.log("Wrong OTP");
     res.redirect("/");
   }
-});
-
-// profile information insertion
-app.post("/submit", (req, res) => {
-  const { fullname, phone, address, state, country, zipcode } = req.body;
-  // Perform the INSERT query
-  con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-
-    var sql1 =
-      "INSERT INTO information (fullname,phone,address,state,country,zipcode) VALUES (?,?,?,?, ?,?)";
-    var values = [fullname, phone, address, state, country, zipcode];
-
-    con.query(sql1, values, function (err, result) {
-      if (err) throw err;
-      console.log("Record inserted");
-      res.redirect("/home");
-    });
-  });
 });
 
 // login validation
@@ -140,9 +151,6 @@ app.post("/survey", (req, res) => {
 });
 
 // page navigation
-app.get("/profile", (req, res) => {
-  res.render("profile");
-});
 
 app.get("/login", (req, res) => {
   res.render("login");
@@ -157,5 +165,5 @@ app.get("/home", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
