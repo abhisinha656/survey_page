@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 
 // Step 1: Handle email and password submission
 app.post("/mail", async (req, res) => {
+  // const age
   const {
     email,
     password,
@@ -64,7 +65,7 @@ app.post("/mail", async (req, res) => {
     if (err) throw err;
     console.log("Connected!");
     const sql =
-      "INSERT INTO user_data (email, password, fullname, age, city, country, gender, dob, student_status, disability_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      "INSERT INTO user_data (email, password, fullname,age, city, country, gender, dob, student_status, disability_status) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
     const values = [
       email,
       password,
@@ -113,7 +114,7 @@ app.post("/loginValid", (req, res) => {
     console.log("Connected!");
 
     con.query(
-      "SELECT * FROM users WHERE email = ? AND password = ?",
+      "SELECT * FROM user_data WHERE email = ? AND password = ?",
       [email, password],
       (err, results) => {
         if (err) {
@@ -134,20 +135,10 @@ app.post("/loginValid", (req, res) => {
   });
 });
 
-// survey hompage
-app.post("/survey", (req, res) => {
-  const q1 = req.body.q1;
-  const q2 = req.body.q2;
-  const q3 = req.body.q3;
-  const q4 = req.body.q4;
+// survey hompage fetch data from database
+app.get("/survey", (req, res) => {
+  // Fetch 10 random questions from the database
 
-  const sql = "INSERT INTO responses (q1, q2,q3,q4) VALUES (?, ?, ?, ?)";
-  con.query(sql, [q1, q2, q3, q4], (err, result) => {
-    if (err) throw err;
-    console.log("Survey responses recorded.");
-  });
-
-  res.send("Thank you for completing the survey!");
 });
 
 // page navigation

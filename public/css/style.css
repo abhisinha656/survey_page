@@ -38,7 +38,7 @@ body {
     font-weight: 600;
     color: #232836;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 /* Style input fields */
@@ -51,6 +51,7 @@ body {
 .field input[type="number"],
 .field input[type="password"],
 .field input[type="date"],
+.field input[type="tel"],
 .field select {
     width: 100%;
     padding: 10px;
@@ -72,6 +73,8 @@ body {
     display: flex;
     align-items: center;
 }
+
+
 
 .field.input-field label {
     flex: 0 0 auto;
