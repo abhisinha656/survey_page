@@ -137,8 +137,7 @@ app.post("/loginValid", (req, res) => {
 
 // survey hompage fetch data from database
 app.get("/survey", (req, res) => {
-  // Fetch 10 random questions from the database
-
+  // Fetch random questions from the database
 });
 
 // page navigation

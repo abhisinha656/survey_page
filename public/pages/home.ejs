@@ -12,14 +12,21 @@
     </style>
   </head>
   <body>
+    <div class="container">
+    <img src="/public/assets/profile.png" alt="" class="right-image" onclick="showLogout()">
+  </div>
+  <div id="logoutDiv" style="display: none;" class="container">
+        <button onclick="logout()" class="btnLogout">Logout</button>
+    </div>
     <header>
       <h3>QUESTIONNAIRES AND DEMOGRAPHIC INFORMATION FOR MULTICUTURAL RESEARCH</h3>
       <p><strong>Instruction : </strong> It is anonymous, so please answer as honestly as possible so we can gather information on how a young person like you behaves and how we can improve our contexts. It will take approximately 30 minutes to answer all the questions, and you should respond according to your level of agreement or disagreement</p>
     </header>
+    
 
-    <form action="/home" method="post" id="surveyForm">
+    <form action="/survey" method="post" id="surveyForm">
       <div class="question" id="q1">
-        <label>question_description </label>
+        <label>Q1. </label>
         <input type="radio" name="q1" value="1" /> Strongly Disagree <br />
         <input type="radio" name="q1" value="2" /> Disagree <br />
         <input type="radio" name="q1" value="3" /> Neither Agree nor Disagree <br />

@@ -38,3 +38,8 @@
       }
 
       showQuestion(currentQuestionIndex); // Show the first question initially
+      
+function showLogout() {
+  // Show the logout div when the image is clicked
+  document.getElementById("logoutDiv").style.display = "block";
+}

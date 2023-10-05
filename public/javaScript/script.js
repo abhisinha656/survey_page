@@ -11,7 +11,6 @@ document.getElementById("btnOtp").addEventListener("click", function (e) {
   if (gender) {
     genderRadio = gender.value;
   }
-
   const dob = document.getElementById("dob").value;
   const student_status = document.getElementById("student_status").value;
   const disability_status = document.getElementById("disability_status").value;
