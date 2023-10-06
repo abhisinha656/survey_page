@@ -136,8 +136,71 @@ app.post("/loginValid", (req, res) => {
 });
 
 // survey hompage fetch data from database
-app.get("/survey", (req, res) => {
-  // Fetch random questions from the database
+
+let currentQuestionIndex = 1; // Initialize to the first question index (change as needed)
+
+app.post("/nextQuestion", async (req, res) => {
+  const direction = req.body.direction;
+  // SQL query to count total rows in the 'question' table
+  const queryCount = "SELECT COUNT(*) AS total_rows FROM question";
+
+  try {
+    // Execute the query to count total rows
+    const resultsCount = await new Promise((resolve, reject) => {
+      con.query(queryCount, (err, resultsCount) => {
+        if (err) {
+          console.error("Error executing SQL query:", err);
+          return reject(err);
+        }
+        resolve(resultsCount);
+      });
+    });
+
+    const min = 1;
+    const max = resultsCount[0].total_rows;
+
+    // Determine the next question based on the direction
+    if (direction === "next") {
+      currentQuestionIndex++;
+    } else if (direction === "previous") {
+      currentQuestionIndex--;
+    }
+
+    // Ensure currentQuestionIndex stays within bounds
+    if (currentQuestionIndex < min) {
+      currentQuestionIndex = min;
+    } else if (currentQuestionIndex > max) {
+      currentQuestionIndex = max;
+    }
+
+    // SQL query to fetch the question text based on currentQuestionIndex
+    const queryQuestion = "SELECT * FROM question LIMIT 1 OFFSET ?";
+
+    const resultsQuestion = await new Promise((resolve, reject) => {
+      con.query(
+        queryQuestion,
+        [currentQuestionIndex],
+        (err, resultsQuestion) => {
+          if (err) {
+            console.error("Error executing SQL query:", err);
+            return reject(err);
+          }
+          resolve(resultsQuestion);
+        }
+      );
+    });
+    // console.log(currentQuestionIndex);
+
+    // Extract the question text from the database response
+    const nextQuestion = resultsQuestion[0].question_description;
+    console.log(nextQuestion);
+
+    // Return the next question as JSON
+    res.json({ question: nextQuestion });
+  } catch (err) {
+    console.error("Error fetching data from the database:", err);
+    res.status(500).json({ error: "Error fetching data from the database" });
+  }
 });
 
 // page navigation
